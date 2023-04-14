@@ -4,25 +4,20 @@ import { create as ipfsHttpClient } from "ipfs-http-client";
 import { useRouter } from "next/router";
 import Web3Modal from "web3modal";
 
-import { Buffer } from "buffer";
-// infura ipfs dedicated gateway ipfs project ID
-const projectId = "2NBnWtNQLe2luNBMfVuxA5SHJHv";
-const projectSecret = "a77fb4a46758fcdd2a72e988950948c2";
-
+const projectId = "project id here";
+const projectSecret = "project secret here";
 const auth =
-  "Basic " + Buffer.from(projectId + ":" + projectSecret).toString("base64");
+  "Basic " +
+  Buffer.from(projectId + ":" + projectSecret, "utf8").toString("base64");
 
-const ipfsClient = require("ipfs-http-client");
-const client = ipfsClient.create({
-  host: "infura-ipfs.io",
+const client = ipfsHttpClient({
+  host: "ipfs.infura.io",
   port: 5001,
   protocol: "https",
-  apiPath: "/api/v0",
   headers: {
     authorization: auth,
   },
 });
-
 import { marketplaceAddress, nft } from "../config";
 
 import NFTMarketplace from "../artifacts/contracts/NFTMarketplace.sol/NFTMarketplace.json";
